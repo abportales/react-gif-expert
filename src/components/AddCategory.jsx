@@ -1,4 +1,5 @@
 import { useState } from "react"
+import PropTypes from 'prop-types'
 
 /** si mandan setCategories recibimos 'props' pero no se ve
  * muy a menudo, en cambio se deses y queda {setCategories}
@@ -20,14 +21,18 @@ export const AddCategory = ({onNewCategory}) => {
         setInputValue(target.value)
     }
 
-    /** este evita que se refresque la pagina para asi conservar
+    /** este 'event' evita que se refresque la pagina para asi conservar
      * lo que capturo el usuario
      */
     const onSubmit = (event) => {
+        //console.log('Hola mundo desde submit for test')
         event.preventDefault();
         const newInputValue = inputValue.trim()
         /** hagamos validaciones basicas, de que no este vacio*/
         if( newInputValue.length <= 1) return;
+
+        /** resetemos el valor para que quede vacio */
+        setInputValue('');
 
         //console.log(inputValue)
         /** en este caso usaremos un callback, funcion que mantiene
@@ -37,15 +42,12 @@ export const AddCategory = ({onNewCategory}) => {
          * setCategories( categories => [inputValue, ...categories])
          */
         onNewCategory(newInputValue)
-
-        /** resetemos el valor para que quede vacio */
-        setInputValue('');
     }
 
     return (
         /**form, es reservada de formulario, y su comportamiento es 
          * que cuando se da enter se refresca la pantalla         */ 
-        <form onSubmit={ (event) => onSubmit(event)}>
+        <form onSubmit={ (event) => onSubmit(event)} aria-label="form">
             <input
                 type="text"
                 placeholder="Buscar gifs"
@@ -54,4 +56,9 @@ export const AddCategory = ({onNewCategory}) => {
             />
         </form>
     )
+}
+
+
+AddCategory.propTypes = {
+    onNewCategory: PropTypes.func.isRequired,
 }

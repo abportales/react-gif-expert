@@ -1,5 +1,6 @@
 import { useFetchGifs } from "../hooks/useFetchGifs";
 import { GifItem } from "./GifItem";
+import PropTypes from 'prop-types'
 
 export const GifGrid = ({ category }) => {
 
@@ -49,10 +50,15 @@ export const GifGrid = ({ category }) => {
                              * la sitanxis es:
                              * se utiliza cuando se tienen muchas props (propiedades)
                              */
-                            {...image} />
+                            {...image} 
+                        />
                     ))
                 }
             </div>
         </>
     )
+}
+
+GifGrid.propTypes = {
+    category: PropTypes.string.isRequired,
 }

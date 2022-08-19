@@ -3,11 +3,12 @@ import { AddCategory, GifGrid } from "./components";
 
 export const GifExpertApp = () => {
 
-    const [categories, setCategories] = useState(['One Punch']);
+    const [categories, setCategories] = useState(['Coding']);
     //console.log(categories)
 
     const onAddCategory = (newCategory) => {
         //console.log(newCategory)
+        console.log('hello world! for test from onAddCategory ')
         if (categories.includes(newCategory)) return;
         /** se hace una copia del objeto con los 3 pts: ... y genera
          * uno nuevo pero con el mismo contenido         
